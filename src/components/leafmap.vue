@@ -80,6 +80,7 @@ export default {
 		},
 		removeMarker(index) {
 			this.markers.splice(index, 1)
+			localStorage.setItem('markers', JSON.stringify(this.markers))
 		},
 	},
 	mounted() {
