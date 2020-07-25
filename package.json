@@ -10,7 +10,10 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
+    "dotenv": "^8.2.0",
     "leaflet": "^1.6.0",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.25",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue2-leaflet": "^2.5.2"

@@ -1,10 +1,7 @@
 <template>
-  <div class="userLogin">
-    <h1>Log In</h1>
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username">
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password">
+  <div class="userMarkers">
+    <p>{{ this.data }}</p>
+    <p>{{ this.locationName }}</p>
   </div>
 </template>
 
@@ -12,6 +9,7 @@
 export default {
   data() {
     return {
+      data: localStorage.getItem('markers')
     }
   }
 }
@@ -19,7 +17,7 @@ export default {
 
 <style>
 
-.userLogin {
+.userMarkers {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +28,7 @@ export default {
   z-index: 2;
   position: absolute;
   top: 40%;
-  left: 40%;
+  left: 43vw;
   padding: 0.5em 1.5em;
 }
 
