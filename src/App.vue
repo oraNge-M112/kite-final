@@ -1,18 +1,13 @@
 <template>
   <div id="app">
-    <leafmap></leafmap>
     <router-view/>
   </div>
 </template>
 
+
 <script>
 
-import leafmap from './components/leafmap'
-
 export default {
-  components: {
-    leafmap
-  }
 }
 </script>
 

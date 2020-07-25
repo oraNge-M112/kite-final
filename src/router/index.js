@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/home.vue'
+import User from '../components/user.vue'
 
 Vue.use(VueRouter)
 
@@ -11,8 +12,9 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/markers',
-    name: 'Markers',
+    path: '/account',
+    name: 'Account',
+    component: User
   }
 ]
 
