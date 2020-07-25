@@ -1,12 +1,21 @@
 <template>
+  <div>
+  <navmenu></navmenu>
   <div class="userMarkers">
     <p>{{ this.data }}</p>
     <p>{{ this.locationName }}</p>
   </div>
+  </div>
 </template>
 
 <script>
+
+import navmenu from './navmenu'
+
 export default {
+  components: {
+    navmenu
+  },
   data() {
     return {
       data: localStorage.getItem('markers')

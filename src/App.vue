@@ -13,6 +13,7 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script:600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 #app {
 	box-sizing: border-box;

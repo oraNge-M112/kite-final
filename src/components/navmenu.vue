@@ -1,30 +1,42 @@
 <template>
-	<nav class="header">
-		<ul>
-			<li class="title">
-				<img src="../assets/kitesurfing.svg" />
-				<span>Kite-Surfing</span>
-			</li>
-			<li class="addMarker" @click="isDisplayed = !isDisplayed">
-				New Marker
-			</li>
-			<li
-				class="user"
-				@click="$router.push('account'), $emit('active', this.accountOn)"
-			>
-				<svg style="width:40px;height:40px" viewBox="0 0 24 24">
-					<path
-						fill="currentColor"
-						d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"
-					/>
-				</svg>
-			</li>
-		</ul>
-	</nav>
+	<div>
+		<nav class="header">
+			<ul>
+				<li class="title" @click="$router.push('/')">
+					<img src="../assets/kitesurfing.svg" />
+					<span>Kite-Surfing</span>
+				</li>
+				<li class="addMarker" @click="isDisplayed = !isDisplayed">
+					New Marker
+				</li>
+				<li class="user" @click="$router.push('account')">
+					<svg style="width:40px;height:40px" viewBox="0 0 24 24">
+						<path
+							fill="currentColor"
+							d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"
+						/>
+					</svg>
+				</li>
+			</ul>
+		</nav>
+		<addnew v-if="isDisplayed"></addnew>
+	</div>
 </template>
 
 <script>
-export default {}
+
+import addnew from './addnew'
+
+export default {
+	components: {
+		addnew
+	},
+	data() {
+		return {
+			isDisplayed: false,
+		}
+	},
+}
 </script>
 
 <style>
