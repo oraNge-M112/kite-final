@@ -2,7 +2,7 @@
 	<div>
 		<navmenu></navmenu>
 		<div class="form" v-show="login">
-			<form action="get" class="login-form">
+			<form action=user.submit.js class="login-form">
 				<h1>Log In</h1>
 				<input
 					type="text"
@@ -53,10 +53,14 @@ export default {
 			}
 			console.log(event.target.value)
     },
-    submitLogin: {
-      
+    submitLogin: function(event) {
+      console.log(event.target.value)
+      event.target.value = ''
+    },
+    createAccount() {
+      this.login = false
     }
-	},
+  },
 }
 </script>
 
