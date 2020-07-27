@@ -4,8 +4,8 @@ axios({
   method: 'POST',
   url: 'http://localhost:8081/login',
   data: {
-    username: 'test11222',
-    password: 'test111dasd'
+    username: 'test112',
+    password: 'test112'
   }
 })
 .then( (res) => {
