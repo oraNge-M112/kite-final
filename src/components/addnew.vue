@@ -60,4 +60,9 @@ export default {
 .add-marker-container button:active {
 	border: none;
 }
+
+label {
+	font-family: 'Montserrat';
+}
+
 </style>

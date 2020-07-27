@@ -54,6 +54,7 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 	margin: 0;
+	width: 100%;
 }
 
 .header ul li {
