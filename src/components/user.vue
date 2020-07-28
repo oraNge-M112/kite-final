@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<navmenu></navmenu>
-		<div class="background-image"><img src="../assets/login-background.jpg" alt="Kite Surfing"></div>
+		<div class="background-image"><img src="../assets/login-background.jpg" id="logbg" alt=""></div>
 		<div class="form" v-show="login">
 			<form action=user.submit.js class="login-form">
 				<h1>Log In</h1>
@@ -100,6 +100,7 @@ export default {
 p {
 	text-align: center;
 	margin-bottom: 2em;
+	color: #ddd;
 }
 
 .form input,
@@ -114,13 +115,17 @@ label {
 	height: 1.5em;
 	margin: 0.5em 0;
 	width: 100%;
+	background: rgba(255, 255, 255, 0.2);
   color: #5fa8d3;
+	font-weight: bold;
 }
 
 .form label {
 	display: block;
 	transform-origin: left bottom;
-	transform: translate(1.5em, -2em);
+	transform: translate(2.8em, -1.8em);
+	color: #ddd;
+	font-weight: bold;
 }
 
 .form input:focus {
@@ -136,4 +141,19 @@ label {
 .form input[filled='true'] + label {
 	transform: translate(0, -3.4em);
 }
+
+.background-image {
+	position: absolute;
+	z-index: -2;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 45.1em;
+}
+
+#logbg {
+	width: 100%;
+	height: 100%;
+}
+
 </style>
