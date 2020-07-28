@@ -1,9 +1,11 @@
 <template>
-	<div>
+	<div class="user-menu">
 		<navmenu></navmenu>
-		<div class="background-image"><img src="../assets/login-background.jpg" id="logbg" alt=""></div>
+		<div class="background-image">
+			<img src="../assets/login-background.jpg" id="logbg" alt="" />
+		</div>
 		<div class="form" v-show="login">
-			<form action=user.submit.js class="login-form">
+			<form class="login-form" method="POST">
 				<h1>Log In</h1>
 				<input
 					type="text"
@@ -12,6 +14,7 @@
 					autocomplete="none"
 					required
 					@input="checkInput"
+					v-model="username"
 				/>
 				<label for="username">Username:</label>
 				<input
@@ -20,17 +23,24 @@
 					id="password"
 					required
 					@input="checkInput"
+					v-model="password"
 				/>
 				<label for="password">Password:</label>
-        <button type="submit" @click="submitLogin">Log in</button>
+				<button @click="submitLogin" class="submitButton">Log in</button>
+				<span v-if='userNot' class="notFound">Wrong credentials!</span>
 			</form>
-			<p>You don't have an account? <br /><span :click="createAccount">Create one.</span></p>
+			<p>
+				You don't have an account? <br /><span :click="createAccount"
+					>Create one.</span
+				>
+			</p>
 		</div>
 	</div>
 </template>
 
 <script>
 import navmenu from './navmenu'
+import axios from 'axios'
 
 export default {
 	components: {
@@ -39,8 +49,11 @@ export default {
 	data() {
 		return {
 			data: localStorage.getItem('markers'),
-      isEmpty: true,
-      login: true
+			isEmpty: true,
+			login: true,
+			username: '',
+			password: '',
+			userNot: false
 		}
 	},
 	methods: {
@@ -52,23 +65,36 @@ export default {
 					event.target.removeAttribute('filled')
 				}
 			}
-			console.log(event.target.value)
-    },
-    submitLogin: function(event) {
-      console.log(event.target.value)
-      event.target.value = ''
-    },
-    createAccount() {
-      this.login = false
-    }
-  },
+		},
+		submitLogin() {
+			axios
+				.post('http://localhost:8081/login', {
+					username: this.username,
+					password: this.password,
+				})
+				.then((res) => {
+					if (res.data == 'User Not Found') {
+						this.userNot = true
+					} else {
+						console.log(res.data)
+					}
+				})
+				.catch((error) => {
+					console.log(error)
+				})
+			event.preventDefault()
+		},
+		createAccount() {
+			this.login = false
+		},
+	},
 }
 </script>
 
 <style>
 .form {
 	font-family: 'Roboto', sans-serif;
-	border: 1px solid #ccc;
+	/* border: 1px solid #ccc; */
 	width: 20em;
 	height: 40%;
 	display: flex;
@@ -82,18 +108,19 @@ export default {
 }
 
 .login-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
 
 .login-form label {
-  margin-right: 5.5em;
+	margin-right: 5.5em;
 }
 
 .form h1 {
-  color: #ffb969;
+	color: #ffb969;
+	padding: 0;
 }
 
 .form h1,
@@ -116,7 +143,7 @@ label {
 	margin: 0.5em 0;
 	width: 100%;
 	background: rgba(255, 255, 255, 0.2);
-  color: #5fa8d3;
+	color: #5fa8d3;
 	font-weight: bold;
 }
 
@@ -126,6 +153,7 @@ label {
 	transform: translate(2.8em, -1.8em);
 	color: #ddd;
 	font-weight: bold;
+	cursor: text;
 }
 
 .form input:focus {
@@ -135,7 +163,7 @@ label {
 }
 
 .form input:focus + label {
-  transform: translate(0, -3.4em);
+	transform: translate(0, -3.4em);
 }
 
 .form input[filled='true'] + label {
@@ -156,4 +184,28 @@ label {
 	height: 100%;
 }
 
+.notFound {
+	color: red;
+	font-weight: bold;
+}
+
+.submitButton {
+	border: none;
+	font-weight: bold;
+	color: white;
+	background: rgba(255, 255, 255, 0.3);
+	outline: none;
+	border-radius: 15px;
+	padding: 0.5em 1em;
+	margin-bottom: 0.5em;
+}
+
+.submitButton:hover {
+	background: rgba(255, 255, 255, 0.5);
+	cursor: pointer;
+}
+
+.form {
+	transform: scale(1.2);
+}
 </style>
