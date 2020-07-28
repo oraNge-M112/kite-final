@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<navmenu></navmenu>
+		<div class="background-image"><img src="../assets/login-background.jpg" alt="Kite Surfing"></div>
 		<div class="form" v-show="login">
 			<form action=user.submit.js class="login-form">
 				<h1>Log In</h1>

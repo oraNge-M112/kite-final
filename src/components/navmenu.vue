@@ -2,14 +2,14 @@
 	<div>
 		<nav class="header">
 			<ul>
-				<li class="title" @click="$router.push('/')">
+				<li class="title" @click="pushHome">
 					<img src="../assets/kitesurfing.svg" />
 					<span>Kite-Surfing</span>
 				</li>
 				<li class="addMarker" @click="isDisplayed = !isDisplayed">
 					New Marker
 				</li>
-				<li class="user" @click="$router.push('account')">
+				<li class="user" @click="pushAccount">
 					<svg style="width:40px;height:40px" viewBox="0 0 24 24">
 						<path
 							fill="currentColor"
@@ -36,6 +36,14 @@ export default {
 			isDisplayed: false,
 		}
 	},
+	methods: {
+		pushHome() {
+			this.$router.push('/').catch( (error) => { console.log (error) })
+		},
+		pushAccount() {
+			this.$router.push('account').catch( (error) => { console.log(error) })
+		}
+	}
 }
 </script>
 

@@ -1,19 +1,19 @@
 <template>
 	<div>
 		<navmenu></navmenu>
-		<user v-if="displayLogin"></user>
-		<leafmap @active="accountOn"></leafmap>
+		<leafmap></leafmap>
 	</div>
 </template>
 
+
 <script>
-import user from '../components/user'
 import leafmap from '../components/leafmap'
 import navmenu from '../components/navmenu'
 
+// @active="accountOn" prop for leafmap in case user component shows over the map 
+
 export default {
 	components: {
-		user,
 		leafmap,
 		navmenu
 	},
