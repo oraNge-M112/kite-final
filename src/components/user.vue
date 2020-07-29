@@ -4,7 +4,7 @@
 		<div class="background-image">
 			<img src="../assets/login-background.jpg" id="logbg" alt="" />
 		</div>
-		<div class="form" v-show="login">
+		<div class="form">
 			<form class="login-form" method="POST">
 				<h1>Log In</h1>
 				<input
@@ -50,15 +50,17 @@ export default {
 		return {
 			data: localStorage.getItem('markers'),
 			isEmpty: true,
-			login: true,
 			username: '',
 			password: '',
+			markers: localStorage.getItem('markers'),
 			userNotFound: false,
 			logged: false
 		}
 	},
 	methods: {
 		checkInput: function(event) {
+			
+			// Verifies if there is input text for animation
 			if (event.target.nodeName && event.target.nodeName === 'INPUT') {
 				if (event.target.value) {
 					event.target.setAttribute('filled', 'true')
@@ -72,15 +74,30 @@ export default {
 				.post('http://localhost:8081/login', {
 					username: this.username,
 					password: this.password,
+					markers: this.markers
 				})
 				.then((res) => {
+					
+					// If user not found in the database > returns error
+
 					if (res.data == 'User Not Found') {
 						this.userNotFound = true
 					} else {
+
+						// When user is found 
 						this.$store.commit('updateLoginStatus')
-						this.$emit('userLogged', this.userNotFound)
+						// not sure if still need this 
+						// have to check it more
+						// this.$emit('userLogged', this.userNotFound) 
 						this.$router.push('/map').catch( (error) => { console.log (error) })
+						const markers = window.localStorage.getItem('markers')
+						console.log(markers)
+
+						// Set current user and markers
+						this.$store.dispatch('addCurrentUser', res.data)
+						this.$store.dispatch('addCurrentMarkers', markers)
 						console.log(res.data)
+
 					}
 				})
 				.catch((error) => {
@@ -89,7 +106,6 @@ export default {
 			event.preventDefault()
 		},
 		createAccount() {
-			this.login = false
 		},
 	},
 }

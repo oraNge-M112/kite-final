@@ -32,32 +32,32 @@ export default {
 		}
 	},
 	created() {
-		const axios = require('axios')
+		// const axios = require('axios')
 
-		axios({
-			method: 'GET',
-			url: 'https://google-maps-geocoding.p.rapidapi.com/geocode/json',
-			headers: {
-				'content-type': 'application/octet-stream',
-				'x-rapidapi-host': 'google-maps-geocoding.p.rapidapi.com',
-				'x-rapidapi-key': '65b93e7d9emsh837d4114ae81b9ap1f7365jsn94ce81f8c2ed',
-				useQueryString: true,
-			},
-			params: {
-				language: 'en',
-				latlng: `${this.location.lat}, ${this.location.lng}`,
-			},
-		})
-			.then((response) => {
-				console.log(response)
-				this.locationName =
-					response.data.results[
-						response.data.results.length - 1
-					].formatted_address
-			})
-			.catch((error) => {
-				console.log(error)
-			})
+		// axios({
+		// 	method: 'GET',
+		// 	url: 'https://google-maps-geocoding.p.rapidapi.com/geocode/json',
+		// 	headers: {
+		// 		'content-type': 'application/octet-stream',
+		// 		'x-rapidapi-host': 'google-maps-geocoding.p.rapidapi.com',
+		// 		'x-rapidapi-key': '65b93e7d9emsh837d4114ae81b9ap1f7365jsn94ce81f8c2ed',
+		// 		useQueryString: true,
+		// 	},
+		// 	params: {
+		// 		language: 'en',
+		// 		latlng: `${this.location.lat}, ${this.location.lng}`,
+		// 	},
+		// })
+		// 	.then((response) => {
+		// 		console.log(response)
+		// 		this.locationName =
+		// 			response.data.results[
+		// 				response.data.results.length - 1
+		// 			].formatted_address
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error)
+		// 	})
 	},
 	mounted() {
 		
