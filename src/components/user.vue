@@ -27,7 +27,7 @@
 				/>
 				<label for="password">Password:</label>
 				<button @click="submitLogin" class="submitButton">Log in</button>
-				<span v-if='userNot' class="notFound">Wrong credentials!</span>
+				<span v-if='userNotFound' class="notFound">Wrong credentials!</span>
 			</form>
 			<p>
 				You don't have an account? <br /><span :click="createAccount"
@@ -53,7 +53,8 @@ export default {
 			login: true,
 			username: '',
 			password: '',
-			userNot: false
+			userNotFound: false,
+			logged: false
 		}
 	},
 	methods: {
@@ -74,8 +75,11 @@ export default {
 				})
 				.then((res) => {
 					if (res.data == 'User Not Found') {
-						this.userNot = true
+						this.userNotFound = true
 					} else {
+						this.$store.commit('updateLoginStatus')
+						this.$emit('userLogged', this.userNotFound)
+						this.$router.push('/map').catch( (error) => { console.log (error) })
 						console.log(res.data)
 					}
 				})
@@ -132,7 +136,7 @@ p {
 
 .form input,
 label {
-	transition: all 500ms;
+	transition: all 200ms;
 	touch-action: manipulation;
 }
 
