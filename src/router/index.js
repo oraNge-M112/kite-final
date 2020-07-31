@@ -15,6 +15,10 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Account',
     component: User
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
 

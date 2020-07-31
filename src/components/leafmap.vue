@@ -1,8 +1,6 @@
 <template>
 	<div id="mapleaf" style="height: 80vh;">
 		<div class="info" style="height: 10%">
-			<span>Center: {{ center }}</span>
-			<span>Zoom: {{ zoom }}</span>
 		</div>
 		<l-map
 			style="height: 80%; width: 100%"
@@ -74,9 +72,15 @@ export default {
 			this.bounds = bounds
 		},
 		addMarker(event) {
-			this.markers.push(event.latlng)
-			const modifiedMarker = JSON.stringify(this.markers)
-			localStorage.setItem('markers', modifiedMarker)
+			if (this.$store.state.logged) {
+				this.markers.push(event.latlng)
+				this.$store.state.markers = this.markers
+				console.log(this.$store.state.markers)
+				const modifiedMarker = JSON.stringify(this.markers)
+				localStorage.setItem('markers', modifiedMarker)
+			} else {
+				console.log('You are not logged in to add markers')
+			}
 		},
 		removeMarker(index) {
 			this.markers.splice(index, 1)
@@ -84,6 +88,7 @@ export default {
 		},
 	},
 	mounted() {
+
 		if (localStorage.getItem('markers')) {
 			try {
 				this.markers = JSON.parse(localStorage.getItem('markers'))

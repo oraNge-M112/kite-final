@@ -48,7 +48,6 @@ export default {
 	},
 	data() {
 		return {
-			data: localStorage.getItem('markers'),
 			isEmpty: true,
 			username: '',
 			password: '',
@@ -86,17 +85,16 @@ export default {
 
 						// When user is found 
 						this.$store.commit('updateLoginStatus')
-						// not sure if still need this 
-						// have to check it more
-						// this.$emit('userLogged', this.userNotFound) 
 						this.$router.push('/map').catch( (error) => { console.log (error) })
-						const markers = window.localStorage.getItem('markers')
+						const markers = localStorage.getItem('markers')
 						console.log(markers)
 
 						// Set current user and markers
 						this.$store.dispatch('addCurrentUser', res.data)
 						this.$store.dispatch('addCurrentMarkers', markers)
 						console.log(res.data)
+
+						localStorage.setItem('user', JSON.stringify(this.$store.state.currentUser._id));
 
 					}
 				})

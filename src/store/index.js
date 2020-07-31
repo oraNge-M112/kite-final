@@ -38,4 +38,9 @@ export const store = new Vuex.Store({
 		currentUser: (state) => state.currentUser,
 		markers: (state) => state.markers,
 	},
+	// actions: {
+		// async saveMarkers ({ commit }) { 
+			// const markers = await 
+		// }
+	// }
 })

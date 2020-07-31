@@ -14,4 +14,9 @@ new Vue({
   computed: {
     ...mapGetters(['logged'])
   },
+  mounted() {
+    if (localStorage.user) {
+      this.$store.state.logged = true
+    } 
+  },
 }).$mount('#app')

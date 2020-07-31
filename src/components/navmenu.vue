@@ -18,13 +18,9 @@
 							d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"
 						/>
 					</svg>
-					<transition name="slide-down">
 						<span v-if="this.$store.getters.logged" @click="logOut"
-							>Log Out</span
-						> </transition
-					><transition name="slide">
+							>Log Out</span>
 						<span v-if="!this.$store.getters.logged">Log In</span>
-					</transition>
 				</li>
 			</ul>
 		</nav>
@@ -60,6 +56,8 @@ export default {
 		logOut() {
 			setTimeout(() => {
 				this.$store.commit('updateLogoutStatus')
+				localStorage.removeItem('user')
+				localStorage.removeItem('markers')
 			}, 500)
 		},
 	},
