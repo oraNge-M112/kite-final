@@ -75,7 +75,6 @@ export default {
 			if (this.$store.state.logged) {
 				this.markers.push(event.latlng)
 				this.$store.state.markers = this.markers
-				console.log(this.$store.state.markers)
 				const modifiedMarker = JSON.stringify(this.markers)
 				localStorage.setItem('markers', modifiedMarker)
 			} else {
@@ -88,7 +87,6 @@ export default {
 		},
 	},
 	mounted() {
-
 		if (localStorage.getItem('markers')) {
 			try {
 				this.markers = JSON.parse(localStorage.getItem('markers'))

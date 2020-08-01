@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<button @click='saveMarkersToDb'>Save Markers</button>
 		<navmenu></navmenu>
 		<leafmap></leafmap>
 	</div>
@@ -9,8 +10,7 @@
 <script>
 import leafmap from '../components/leafmap'
 import navmenu from '../components/navmenu'
-
-// @active="accountOn" prop for leafmap in case user component shows over the map 
+import axios from 'axios'
 
 export default {
 	components: {
@@ -20,9 +20,29 @@ export default {
 	data() {
 		return {}
 	},
+	methods: {
+		saveMarkersToDb() {
+			const markers = localStorage.getItem('markers')
+			console.log(this.$store.state.currentUserId)
+			console.log(markers)
+			try {
+				axios.put( 'http://localhost:8081/save', {
+					userId: this.$store.state.currentUserId,
+					markers: markers
+			}).then( (res) => console.log(res))
+			} catch (error) {
+				console.log(error)
+			}
+		}
+	}
 }
 </script>
 
 <style>
-
+	button {
+		position: absolute;
+		left: 5em;
+		top: 10em;
+		z-index: 5;
+	}
 </style>

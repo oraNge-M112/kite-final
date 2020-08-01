@@ -42,13 +42,13 @@ export default {
 	},
 	methods: {
 		pushMap() {
-			this.$router.push('/map').catch((error) => {
+			this.$router.push('/').catch((error) => {
 				console.log(error)
 			})
 		},
 		pushAccount() {
 			if (this.$store.state.logged == false) {
-				this.$router.push('/').catch((error) => {
+				this.$router.push('/login').catch((error) => {
 					console.log(error)
 				})
 			}
@@ -56,7 +56,7 @@ export default {
 		logOut() {
 			setTimeout(() => {
 				this.$store.commit('updateLogoutStatus')
-				localStorage.removeItem('user')
+				localStorage.removeItem('userId')
 				localStorage.removeItem('markers')
 			}, 500)
 		},

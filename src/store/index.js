@@ -7,6 +7,7 @@ export const store = new Vuex.Store({
 	state: {
 		logged: false,
 		currentUser: {},
+		currentUserId: '',
 		markers: [],
 	},
 	mutations: {
@@ -24,6 +25,9 @@ export const store = new Vuex.Store({
 			state.markers = markers
 			// console.log(markers) logging current markers
 		},
+		setUserId(state, userId) {
+			state.currentUserId = userId
+		}
 	},
 	actions: {
 		async addCurrentUser({ commit }, user) {
@@ -32,15 +36,14 @@ export const store = new Vuex.Store({
 		async addCurrentMarkers({ commit }, markers) {
 			commit('setMarkers', markers)
 		},
+		async setCurrentUserId({ commit }, userId) {
+			commit('setUserId', userId)
+		}
 	},
 	getters: {
 		logged: (state) => state.logged,
 		currentUser: (state) => state.currentUser,
+		currentUserId: (state) => state.currentUserId,
 		markers: (state) => state.markers,
 	},
-	// actions: {
-		// async saveMarkers ({ commit }) { 
-			// const markers = await 
-		// }
-	// }
 })

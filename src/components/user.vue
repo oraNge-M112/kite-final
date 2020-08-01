@@ -87,14 +87,14 @@ export default {
 						this.$store.commit('updateLoginStatus')
 						this.$router.push('/map').catch( (error) => { console.log (error) })
 						const markers = localStorage.getItem('markers')
-						console.log(markers)
 
 						// Set current user and markers
 						this.$store.dispatch('addCurrentUser', res.data)
+						this.$store.dispatch('setCurrentUserId', JSON.stringify(this.$store.state.currentUser._id))
 						this.$store.dispatch('addCurrentMarkers', markers)
 						console.log(res.data)
 
-						localStorage.setItem('user', JSON.stringify(this.$store.state.currentUser._id));
+						localStorage.setItem('userId', this.$store.state.currentUser._id);
 
 					}
 				})
