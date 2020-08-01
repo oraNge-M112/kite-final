@@ -20,7 +20,6 @@ export const store = new Vuex.Store({
 		},
 		setUser(state, user) {
 			state.currentUser = user
-			console.log(state.currentUser)
 		},
 		setMarkers(state, markers) {
 			state.markers = markers

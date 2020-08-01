@@ -23,12 +23,14 @@ export default {
 	methods: {
 		saveMarkersToDb() {
 			const markers = localStorage.getItem('markers')
-			console.log(this.$store.state.currentUserId)
-			console.log(markers)
+
+			const arrayed = JSON.parse(markers)
+			console.log(arrayed)
+
 			try {
 				axios.put( 'http://localhost:8081/save', {
 					userId: this.$store.state.currentUserId,
-					markers: markers
+					markers: arrayed
 			}).then( (res) => console.log(res))
 			} catch (error) {
 				console.log(error)

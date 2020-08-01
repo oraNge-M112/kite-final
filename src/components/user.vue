@@ -82,17 +82,18 @@ export default {
 					if (res.data == 'User Not Found') {
 						this.userNotFound = true
 					} else {
-
 						// When user is found 
+						// Update login status
 						this.$store.commit('updateLoginStatus')
 						this.$router.push('/map').catch( (error) => { console.log (error) })
-						const markers = localStorage.getItem('markers')
+						const markers = res.data.markers
+						localStorage.setItem('markers', JSON.stringify(markers))
+						console.log(markers)
 
 						// Set current user and markers
 						this.$store.dispatch('addCurrentUser', res.data)
-						this.$store.dispatch('setCurrentUserId', JSON.stringify(this.$store.state.currentUser._id))
+						this.$store.dispatch('setCurrentUserId', this.$store.state.currentUser._id)
 						this.$store.dispatch('addCurrentMarkers', markers)
-						console.log(res.data)
 
 						localStorage.setItem('userId', this.$store.state.currentUser._id);
 
