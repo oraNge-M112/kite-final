@@ -2,7 +2,7 @@
 	<div>
 		<button @click='saveMarkersToDb'>Save Markers</button>
 		<navmenu></navmenu>
-		<leafmap></leafmap>
+		<leafmap :key="this.$store.state.keyForMap"></leafmap>
 	</div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
 			} catch (error) {
 				console.log(error)
 			}
-		}
+		},
 	}
 }
 </script>

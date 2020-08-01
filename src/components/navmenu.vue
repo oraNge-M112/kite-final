@@ -58,6 +58,7 @@ export default {
 				this.$store.commit('updateLogoutStatus')
 				localStorage.removeItem('userId')
 				localStorage.removeItem('markers')
+				this.$store.commit('refreshMap')
 			}, 500)
 		},
 	},

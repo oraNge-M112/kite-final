@@ -9,6 +9,7 @@ export const store = new Vuex.Store({
 		currentUser: {},
 		currentUserId: '',
 		markers: [],
+		keyForMap: 1
 	},
 	mutations: {
 		updateLoginStatus(state) {
@@ -27,6 +28,9 @@ export const store = new Vuex.Store({
 		},
 		setUserId(state, userId) {
 			state.currentUserId = userId
+		},
+		refreshMap(state) {
+			state.keyForMap ++
 		}
 	},
 	actions: {
@@ -38,6 +42,9 @@ export const store = new Vuex.Store({
 		},
 		async setCurrentUserId({ commit }, userId) {
 			commit('setUserId', userId)
+		},
+		async refreshMap({ commit }) {
+			commit('refreshMap')
 		}
 	},
 	getters: {
@@ -45,5 +52,6 @@ export const store = new Vuex.Store({
 		currentUser: (state) => state.currentUser,
 		currentUserId: (state) => state.currentUserId,
 		markers: (state) => state.markers,
+		refreshMap: (state) => state.refreshMap
 	},
 })
