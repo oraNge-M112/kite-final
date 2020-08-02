@@ -5,12 +5,7 @@
 				<li class="title" @click="pushMap">
 					<img src="../assets/kitesurfing.svg" />
 					<span>Kite-Surfing</span>
-				</li>
-
-				<!-- Maybe adding a button on the map page which add/deletes all markers -->
-				<!-- <li class="addMarker smaller" @click="isDisplayed = !isDisplayed">
-					New Marker
-				</li> -->
+				</li>			
 				<li class="user smaller" @click="pushAccount">
 					<svg style="width:40px;height:40px" viewBox="0 0 24 24">
 						<path

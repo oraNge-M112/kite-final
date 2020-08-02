@@ -30,11 +30,14 @@ export default {
 	left: 0;
 	top: 0;
 	width: 100vw;
-	height: 100%;
+	height: 100vh;
+	
 }
 
 #logbg {
 	width: 100%;
 	height: 100%;
+	filter: brightness(70%);
+	background-size: cover;
 }
 </style>
