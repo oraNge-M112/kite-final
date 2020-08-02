@@ -5,9 +5,9 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Go to database directory and start Project: cd kite-database
 ```
-npm run serve
+npm start
 ```
 
 ### Compiles and minifies for production
