@@ -1,9 +1,7 @@
 <template>
 	<div id="mapleaf" style="height: 80vh;">
-		<div class="info" style="height: 10%">
-		</div>
 		<l-map
-			style="height: 80%; width: 100%"
+			style="height: 100%; width: 100vw"
 			:zoom="zoom"
 			:center="center"
 			@update:zoom="zoomUpdated"
@@ -73,6 +71,9 @@ export default {
 		},
 		addMarker(event) {
 			if (this.$store.state.logged) {
+				if (this.markers == null) {
+					this.markers = []
+				}
 				this.markers.push(event.latlng)
 				this.$store.state.markers = this.markers
 				const modifiedMarker = JSON.stringify(this.markers)

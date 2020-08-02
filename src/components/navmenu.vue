@@ -1,7 +1,7 @@
 <template>
-	<div>
-		<nav class="header">
-			<ul>
+	<div class="headerContainer">
+		<div class="header">
+			<ul class="navbar-links">
 				<li class="title" @click="pushMap">
 					<img src="../assets/kitesurfing.svg" />
 					<span>Kite-Surfing</span>
@@ -23,7 +23,7 @@
 						<span v-if="!this.$store.getters.logged">Log In</span>
 				</li>
 			</ul>
-		</nav>
+		</div>
 		<addnew v-if="isDisplayed"></addnew>
 	</div>
 </template>
@@ -66,67 +66,37 @@ export default {
 </script>
 
 <style>
-.header {
+
+.headerContainer {
+	width: 100vw;
 	background-color: #303030;
 	position: absolute;
-	top: 0;
 	left: 0;
-	width: 100vw;
-	border-bottom: 2px solid orange;
+	top: 0;
 }
 
-.header ul {
+.navbar-links {
 	list-style: none;
 	display: flex;
+	justify-content: center;
 	align-items: center;
-	justify-content: space-between;
-	margin: 0;
-	width: 95vw;
+	color: #FFB969;
+	font-size: 1.5em;
 }
 
-.header ul li {
-	padding: 1rem 3rem;
+.title, .user {
+	display: flex;
+	align-items: center;
 	cursor: pointer;
-	font-size: 2rem;
-	color: #ffb969;
 }
 
 .title {
-	line-height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.header ul li:first-child {
 	margin-right: auto;
+	margin-left: 2em;
 }
 
 .user {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	margin-right: 5em;
 }
 
-.smaller {
-	transform: scale(0.7);
-}
-
-.slide-enter-active {
-  animation: slide .5s;
-}
-.slide-leave-active {
-  animation: slide .5s reverse;
-}
-@keyframes slide {
-  0% {
-    transform: translateY(-3em);
-  }
-  50% {
-    transform: scale(1em);
-  }
-  100% {
-    transform: scale(0em);
-  }
-}
 </style>
