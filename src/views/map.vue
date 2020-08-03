@@ -116,8 +116,9 @@ export default {
 .controlArea {
 	position: absolute;
 	top: 6.5em;
+	left: 0;
 	z-index: 5;
-	width: 98%;
+	width: 100vw;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -140,20 +141,21 @@ export default {
 }
 
 .controls {
-	position: relative;
-	top: 8em;
+	position: absolute;
+	top: 9em;
 	z-index: 5;
+	left: 0;
+	width: 100%;
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	
+	flex-direction: row;
 }
 
 .controls button {
-	width: 10em;
-	padding: 0.5em 0;
-	margin-right: 1em;
+	width: 8em;
+	padding: 0.3em 0;
+	margin-right: 1.2em;
 	border-radius: 10px;
 	border: 1px solid #ddd;
 	background: rgba(0, 0, 0, 0.5);
