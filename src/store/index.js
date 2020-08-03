@@ -11,7 +11,7 @@ export const store = new Vuex.Store({
 		markers: [],
 		keyForMap: 1,
 		logStatus: 'login',
-		isHome: false
+		isHome: true
 	},
 	mutations: {
 		updateLoginStatus(state) {

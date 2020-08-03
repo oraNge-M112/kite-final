@@ -1,5 +1,5 @@
 <template>
-	<div id="mapleaf" style="height: 80vh;">
+	<div id="mapleaf" style="height: 86.6vh;">
 		<l-map
 			style="height: 100%; width: 100vw"
 			:zoom="zoom"
@@ -108,7 +108,8 @@ export default {
 }
 
 #mapleaf {
-	position: relative;
+	position: absolute;
+	left: 0;
 	top: 6em;
 	z-index: 1;
 }
@@ -122,5 +123,7 @@ export default {
 	background-color: #303030;
 	margin: 1em 0;
 	padding: 0.3em;
+	display: flex;
+	justify-content: center;
 }
 </style>

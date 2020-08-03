@@ -1,23 +1,29 @@
 <template>
 	<div id="containerMainPage">
 		<div class="pageInfo">
-			<span class="loginInfo" v-if="!this.$store.state.logged">Please Log In to create, update and save markers to your account!</span>
+			<span class="loginInfo" v-if="!this.$store.state.logged"
+				>Please Log In to create, update and save markers to your account!</span
+			>
 		</div>
 		<div class="controlArea">
 			<button class="controlsBtn" @click="expandControls">
-				<span v-if="this.showControls">Hide Controls</span>
-				<span v-if="!this.showControls">Show Controls</span>
+				<span v-if="this.showControls" class="hideControls">Hide Controls</span>
+				<span v-if="!this.showControls" class="showControls">Show Controls</span>
 			</button>
-			<div class="controls" v-if="showControls">
-				<button @click='saveMarkersToDb' class="ctrlBtn">Save Markers</button>
-				<button @click='deleteLast' class="ctrlBtn">Delete Last Marker</button>
-			</div>
 		</div>
+		<div class="controls" v-if="showControls">
+				<button @click="saveMarkersToDb" class="ctrlBtn">Save Markers</button>
+				<button @click="deleteFirst" class="ctrlBtn">Delete First</button>
+				<button @click="deleteLast" class="ctrlBtn">Delete Last</button>
+			</div>
 		<navmenu></navmenu>
-		<leafmap id="map" :key="this.$store.state.keyForMap"></leafmap>
+		<leafmap
+			:class="{ mapPlacement: this.$store.state.logged }"
+			class="map"
+			:key="this.$store.state.keyForMap"
+		></leafmap>
 	</div>
 </template>
-
 
 <script>
 import leafmap from '../components/leafmap'
@@ -27,55 +33,140 @@ import axios from 'axios'
 export default {
 	components: {
 		leafmap,
-		navmenu
+		navmenu,
 	},
 	data() {
 		return {
-			showControls: false
+			showControls: false,
 		}
 	},
 	methods: {
-		saveMarkersToDb() {
+		async saveMarkersToDb() {
 			const markers = localStorage.getItem('markers')
 
 			const arrayed = JSON.parse(markers)
 			console.log(arrayed)
 
 			try {
-				axios.put( 'http://localhost:8081/save', {
-					userId: this.$store.state.currentUserId,
-					markers: arrayed
-			}).then( (res) => console.log(res))
+				await axios
+					.put('http://localhost:8081/save', {
+						userId: this.$store.state.currentUserId,
+						markers: arrayed,
+					})
+					.then((res) => console.log(res))
 			} catch (error) {
 				console.log(error)
 			}
 		},
+		deleteFirst() {
+			const remake = JSON.parse(localStorage.getItem('markers'))
+			remake.shift()
+			localStorage.setItem('markers', JSON.stringify(remake))
+			this.$store.commit('refreshMap')
+		},
+		deleteLast() {
+			const remake = JSON.parse(localStorage.getItem('markers'))
+			remake.pop()
+			localStorage.setItem('markers', JSON.stringify(remake))
+			this.$store.commit('refreshMap')
+		},
 		expandControls() {
 			this.showControls = !this.showControls
-		}
-	}
+		},
+	},
 }
 </script>
 
 <style>
-	#map {
-		margin: 0;
-		position: absolute;
-		left: 0;
-		top: 8em;
-	}
-	
-	.pageInfo {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+.map {
+	margin: 0;
+	position: absolute;
+	left: 0;
+	top: 8em;
+}
 
-	.loginInfo {
-		z-index: 11;
-		position: absolute;
-		top: 5em;
-		color: #D64933;
-		margin-top: 1em;
-	}
+.pageInfo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.loginInfo {
+	z-index: 11;
+	display: flex;
+	position: relative;
+	top: 5em;
+	color: #d64933;
+	margin-top: 1em;
+}
+
+.mapPlacement {
+	position: absolute;
+	top: 6em;
+}
+
+.showControls {
+	color: #ffb969;
+}
+
+.hideControls {
+	color: #ddd;
+}
+
+.controlArea {
+	position: absolute;
+	top: 6.5em;
+	z-index: 5;
+	width: 98%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.controlsBtn {
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0.5);
+	padding: 0.3em 1em;
+	cursor: pointer;
+}
+
+.controlsBtn:focus {
+	outline: none;
+}
+
+.controlsBtn:hover {
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.controls {
+	position: relative;
+	top: 8em;
+	z-index: 5;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.controls button {
+	width: 10em;
+	padding: 0.5em 0;
+	margin-right: 1em;
+	border-radius: 10px;
+	border: 1px solid #ddd;
+	background: rgba(0, 0, 0, 0.5);
+	color: #ffb969;
+	cursor: pointer;
+}
+
+.controls button:focus {
+	outline: none;
+}
+
+.controls button:hover {
+	background: rgba(0, 0, 0, 0.8)
+}
+
 </style>

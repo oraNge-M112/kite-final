@@ -1,16 +1,25 @@
 <template>
 	<div>
 		<div class="weatherValues">
-			<div id="header">{{ locationName }}</div>
+			<div id="header" @click="updateWeatherData">{{ this.city }} 
+			</div>
 			<div>
-				<img id="currentTempIcon" src="@/assets/wi-thermometer.svg" />:
+				<img id="currentTempIcon" src="@/assets/wi-thermometer.svg" />
 				{{ currentTemp }}
 			</div>
-			<div><img id="maxTempIcon" src="@/assets/wi-raindrops.svg" />: {{ precipitations }} %</div>
-			<div><img id="minTempIcon" src="@/assets/wi-humidity.svg" />: {{ humidity }} %</div>
-			<div><img id="windSpeedIcon" src="@/assets/wi-windy.svg" />: {{ windSpeed }} km/h</div>
+			<!-- <div>
+				<img id="maxTempIcon" src="@/assets/wi-raindrops.svg" />
+				{{ precipitations }} %
+			</div> -->
 			<div>
-				<img id="directionIcon" src="@/assets/wi-wind-deg.svg" />:
+				<img id="minTempIcon" src="@/assets/wi-humidity.svg" /> {{ humidity }} %
+			</div>
+			<div>
+				<img id="windSpeedIcon" src="@/assets/wi-windy.svg" />
+				{{ windSpeed }} km/h
+			</div>
+			<div>
+				<img id="directionIcon" src="@/assets/wi-wind-deg.svg" />
 				{{ calculateDirection(this.angle) }}
 			</div>
 		</div>
@@ -25,43 +34,38 @@ export default {
 		return {
 			locationName: '',
 			angle: 222,
-      currentTemp: 15,
-      precipitations: 0,
-      humidity: 0,
+			currentTemp: 15,
+			precipitations: 0,
+			humidity: 0,
 			windSpeed: 15,
+			city: 'Paris',
 		}
 	},
-	created() {
-		// const axios = require('axios')
-
-		// axios({
-		// 	method: 'GET',
-		// 	url: 'https://google-maps-geocoding.p.rapidapi.com/geocode/json',
-		// 	headers: {
-		// 		'content-type': 'application/octet-stream',
-		// 		'x-rapidapi-host': 'google-maps-geocoding.p.rapidapi.com',
-		// 		'x-rapidapi-key': '65b93e7d9emsh837d4114ae81b9ap1f7365jsn94ce81f8c2ed',
-		// 		useQueryString: true,
-		// 	},
-		// 	params: {
-		// 		language: 'en',
-		// 		latlng: `${this.location.lat}, ${this.location.lng}`,
-		// 	},
-		// })
-		// 	.then((response) => {
-		// 		console.log(response)
-		// 		this.locationName =
-		// 			response.data.results[
-		// 				response.data.results.length - 1
-		// 			].formatted_address
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error)
-		// 	})
-	},
-	mounted() {
-		
-	},
+	// created() {
+	// 	const axios = require('axios')
+	// 	axios({
+	// 		method: 'GET',
+	// 		url: 'https://google-maps-geocoding.p.rapidapi.com/geocode/json',
+	// 		headers: {
+	// 			'content-type': 'application/octet-stream',
+	// 			'x-rapidapi-host': 'google-maps-geocoding.p.rapidapi.com',
+	// 			'x-rapidapi-key': '65b93e7d9emsh837d4114ae81b9ap1f7365jsn94ce81f8c2ed',
+	// 			useQueryString: true,
+	// 		},
+	// 		params: {
+	// 			language: 'en',
+	// 			latlng: `${this.location.lat}, ${this.location.lng}`,
+	// 		},
+	// 	})
+	// 		.then((response) => {
+	// 			console.log(response)
+	// 			this.locationName = response.data.results[response.data.results.length - 1].address_components[0].long_name
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log(error)
+	// 		})
+	// },
+	mounted() {},
 	methods: {
 		calculateDirection(angle) {
 			var directions = [
@@ -77,6 +81,36 @@ export default {
 			return directions[
 				Math.round(((angle %= 360) < 0 ? angle + 360 : angle) / 45) % 8
 			]
+		},
+		updateWeatherData() {
+			const axios = require('axios')
+			axios({
+				method: 'GET',
+				url: 'https://community-open-weather-map.p.rapidapi.com/weather',
+				headers: {
+					'content-type': 'application/octet-stream',
+					'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
+					'x-rapidapi-key':
+						'65b93e7d9emsh837d4114ae81b9ap1f7365jsn94ce81f8c2ed',
+					useQueryString: true,
+				},
+				params: {
+					id: '',
+					units: 'metric',
+					q: this.city,
+				},
+			})
+				.then((response) => {
+					console.log(response.data)
+					this.city = response.data.name
+					this.angle = response.data.wind.deg
+					this.currentTemp = response.data.main.temp
+					this.windSpeed = response.data.wind.speed
+					this.humidity = response.data.main.humidity
+				})
+				.catch((error) => {
+					console.log(error)
+				})
 		},
 	},
 }
@@ -97,8 +131,8 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-  cursor: default;
-  font-size: 1.3em;
+	cursor: default;
+	font-size: 1.3em;
 }
 
 .leaflet-popup-content-wrapper {
@@ -107,5 +141,4 @@ export default {
 	align-items: center;
 	justify-content: center;
 }
-
 </style>
