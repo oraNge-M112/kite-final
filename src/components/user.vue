@@ -1,8 +1,8 @@
 <template>
 	<div class="user-menu">
-		<navmenu></navmenu>
+		<navmenu class="userNavBar" ></navmenu>
 		<div class="background-image">
-			<img src="../assets/login-background.jpg" id="logbg" alt="" />
+			<img src="../assets/login-background.jpg" id="logbg" />
 		</div>
 		<loginform></loginform>
 	</div>
@@ -15,7 +15,7 @@ import loginform from './loginform'
 export default {
 	components: {
 		navmenu,
-		loginform
+		loginform,
 	},
 	data() {
 		return {}
@@ -31,7 +31,6 @@ export default {
 	top: 0;
 	width: 100vw;
 	height: 100vh;
-	
 }
 
 #logbg {
@@ -40,4 +39,12 @@ export default {
 	filter: brightness(70%);
 	background-size: cover;
 }
+
+.userNavBar {
+	background: transparent;
+}
+.userNavBar span, svg {
+	color: #64B6AC;
+}
+
 </style>

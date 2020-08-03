@@ -94,6 +94,7 @@ export default {
 						this.$store.dispatch('addCurrentMarkers', markers)
 
 						localStorage.setItem('userId', this.$store.state.currentUser._id)
+						this.$store.state.isHome = true
 					}
 				})
 				.catch((error) => {
@@ -170,7 +171,7 @@ label {
 .form label {
 	display: block;
 	transform-origin: left bottom;
-	transform: translate(2.8em, -2em);
+	transform: translate(2.8em, -1.9em);
 	color: #ddd;
 	cursor: text;
 }

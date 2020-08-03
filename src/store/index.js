@@ -10,7 +10,8 @@ export const store = new Vuex.Store({
 		currentUserId: '',
 		markers: [],
 		keyForMap: 1,
-		logStatus: 'login'
+		logStatus: 'login',
+		isHome: false
 	},
 	mutations: {
 		updateLoginStatus(state) {
@@ -21,6 +22,9 @@ export const store = new Vuex.Store({
 		},
 		updateLogStatus(state, status) {
 			state.logStatus = status
+		},
+		updateIsHome(state) {
+			state.isHome = !state.isHome
 		},
 		setUser(state, user) {
 			state.currentUser = user
@@ -54,6 +58,9 @@ export const store = new Vuex.Store({
 		},
 		async setSignUpStatus({ commit }) {
 			commit('updateLogStatus', 'signup')
+		},
+		async setHome({ commit }) {
+			commit('updateIsHome')
 		}
 	},
 	getters: {
