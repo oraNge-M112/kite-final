@@ -20,9 +20,10 @@
 					>
 				</li>
 				<div class="pageInfo">
-					<span class="loginInfo" v-if="!this.$store.state.logged && this.$store.state.isHome"
-						>Please Log In to add and update markers to your
-						account!</span
+					<span
+						class="loginInfo"
+						v-if="!this.$store.state.logged && this.$store.state.isHome"
+						>Please Log In to add and update markers to your account!</span
 					>
 					<span class="saveInfo" v-if="this.$store.state.logged"
 						>Don't forget to update markers to not lose them!</span
@@ -32,7 +33,10 @@
 					<svg style="width:40px;height:40px" viewBox="0 0 24 24">
 						<path
 							fill="currentColor"
-							:class="{ classUserHome: this.$store.state.isHome == true }"
+							:class="{
+								classUserHome: this.$store.state.isHome,
+								classUserLogin: !this.$store.state.isHome,
+							}"
 							d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"
 						/>
 					</svg>
@@ -133,11 +137,14 @@ export default {
 	align-items: center;
 	cursor: pointer;
 	margin: auto;
-
 }
 
 .classUserHome {
 	fill: #ffb969;
+}
+
+.classUserLogin {
+	fill: #64b6ac;
 }
 
 .color_blue {

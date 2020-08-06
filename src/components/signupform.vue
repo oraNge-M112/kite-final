@@ -42,6 +42,9 @@
 				<button class="submitButton" @click="registerAcc">
 					<span>Create Account</span>
 				</button>
+				<span v-if="userExists" class="userExists">
+					There is already an user with this email or username.
+				</span>
 			</form>
 			<p class="alreadyAcc">
 				You already have an account? <br /><span
@@ -64,10 +67,11 @@ export default {
 			email: '',
 			username: '',
 			password: '',
+			userExists: false,
 		}
 	},
 	components: {
-		navmenu
+		navmenu,
 	},
 	methods: {
 		checkInput: function(event) {
@@ -79,21 +83,34 @@ export default {
 					event.target.removeAttribute('filled')
 				}
 			}
+			this.userExists = false
 		},
 		goToLogin() {
 			this.$router.push('/login')
 		},
 		registerAcc(event) {
-			event.preventDefault();
-			axios
-				.post('http://localhost:8081/signup', {
-					email: this.email,
-					username: this.username,
-					password: this.password,
-				}).then((res) => {
-					console.log(res)
-				})
-		}
+			event.preventDefault()
+			const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			const validEmail = reg.exec(this.email)
+			if (!validEmail) {
+				console.log('Not a valid Email!')
+			} else {
+				axios
+					.post('http://localhost:8081/signup', {
+						email: this.email,
+						username: this.username,
+						password: this.password,
+					})
+					.then((res) => {
+						if (res) {
+							this.$router.push('/login')
+							this.userExists = false
+						} else {
+							this.userExists = true
+						}
+					})
+			}
+		},
 	},
 }
 </script>
@@ -196,9 +213,10 @@ label {
 	transform: translate(0, -3.7em);
 }
 
-.notFound {
+.userExists {
 	color: red;
-	font-weight: bold;
+	position: relative;
+	width: 185%;
 }
 
 .submitButton {
@@ -256,5 +274,4 @@ label {
 #createAcc:hover {
 	border-bottom: 1px solid #64b6ac;
 }
-
 </style>

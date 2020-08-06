@@ -7,7 +7,7 @@
 			</button>
 		</div>
 		<div class="controls" v-if="showControls">
-				<button @click="saveMarkersToDb" class="ctrlBtn">Save Markers</button>
+				<button @click="saveMarkersToDb" class="ctrlBtn">Save</button>
 				<button @click="deleteFirst" class="ctrlBtn">Delete First</button>
 				<button @click="deleteLast" class="ctrlBtn">Delete Last</button>
 			</div>
@@ -97,7 +97,7 @@ export default {
 	top: 6.5em;
 	left: 0;
 	z-index: 5;
-	width: 100vw;
+	width: 98.5vw;
 	display: flex;
 	justify-content: center;
 	align-items: center;
