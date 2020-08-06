@@ -1,10 +1,5 @@
 <template>
 	<div id="containerMainPage">
-		<div class="pageInfo">
-			<span class="loginInfo" v-if="!this.$store.state.logged"
-				>Please Log In to create, update and save markers to your account!</span
-			>
-		</div>
 		<div class="controlArea">
 			<button class="controlsBtn" @click="expandControls">
 				<span v-if="this.showControls" class="hideControls">Hide Controls</span>
@@ -82,27 +77,11 @@ export default {
 	margin: 0;
 	position: absolute;
 	left: 0;
-	top: 8em;
+	top: 9em;
 }
 
-.pageInfo {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.loginInfo {
-	z-index: 11;
-	display: flex;
-	position: relative;
-	top: 5em;
-	color: #d64933;
+.leaflet-top .leaflet-left {
 	margin-top: 1em;
-}
-
-.mapPlacement {
-	position: absolute;
-	top: 6em;
 }
 
 .showControls {

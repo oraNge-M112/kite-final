@@ -103,7 +103,7 @@ export default {
 			event.preventDefault()
 		},
 		createAccount() {
-			this.$store.dispatch('setSignUpStatus')
+			this.$router.push('/signup')
 		},
 	},
 }

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import navmenu from './navmenu'
-import loginform from './loginform'
+import navmenu from '../components/navmenu'
+import loginform from '../components/loginform'
 
 export default {
 	components: {

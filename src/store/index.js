@@ -20,9 +20,6 @@ export const store = new Vuex.Store({
 		updateLogoutStatus(state) {
 			state.logged = false
 		},
-		updateLogStatus(state, status) {
-			state.logStatus = status
-		},
 		updateIsHome(state) {
 			state.isHome = !state.isHome
 		},
@@ -55,9 +52,6 @@ export const store = new Vuex.Store({
 		},
 		async setLoginStatus({ commit }) {
 			commit('updateLogStatus', 'login')
-		},
-		async setSignUpStatus({ commit }) {
-			commit('updateLogStatus', 'signup')
 		},
 		async setHome({ commit }) {
 			commit('updateIsHome')

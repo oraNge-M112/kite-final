@@ -11,8 +11,23 @@
 						v-if="!this.$store.state.isHome"
 						src="../assets/kitesurfing2.svg"
 					/>
-					<span>Kite-Surfing</span>
+					<span
+						:class="{
+							color_blue: !this.$store.state.isHome,
+							color_orange: this.$store.state.isHome,
+						}"
+						>Kite-Surfing</span
+					>
 				</li>
+				<div class="pageInfo">
+					<span class="loginInfo" v-if="!this.$store.state.logged && this.$store.state.isHome"
+						>Please Log In to add and update markers to your
+						account!</span
+					>
+					<span class="saveInfo" v-if="this.$store.state.logged"
+						>Don't forget to update markers to not lose them!</span
+					>
+				</div>
 				<li class="user smaller" @click="pushAccount">
 					<svg style="width:40px;height:40px" viewBox="0 0 24 24">
 						<path
@@ -22,7 +37,14 @@
 						/>
 					</svg>
 					<span v-if="this.$store.getters.logged" @click="logOut">Log Out</span>
-					<span v-if="!this.$store.getters.logged">Log In</span>
+					<span
+						v-if="!this.$store.getters.logged"
+						:class="{
+							color_blue: !this.$store.state.isHome,
+							color_orange: this.$store.state.isHome,
+						}"
+						>Log In</span
+					>
 				</li>
 			</ul>
 		</div>
@@ -49,7 +71,6 @@ export default {
 				})
 				this.$store.state.isHome = false
 			}
-			
 		},
 		logOut() {
 			this.$store.state.isHome = true
@@ -74,12 +95,36 @@ export default {
 }
 
 .navbar-links {
-	list-style: none;
+	display: inline-grid;
+	grid-template-columns: 1fr 1.4fr 1fr;
+	grid-template-rows: 1fr;
+	justify-content: center;
+	color: #ffb969;
+	font-size: 1.5em;
+	align-items: center;
+	margin: 1em;
+	padding: 0.2em 0;
+	width: 95vw;
+}
+
+.pageInfo {
+	font-size: 0.7em;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #ffb969;
-	font-size: 1.5em;
+}
+
+.loginInfo {
+	z-index: 11;
+	color: #d64933;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.saveInfo {
+	position: relative;
+	color: tomato;
 }
 
 .title,
@@ -87,18 +132,19 @@ export default {
 	display: flex;
 	align-items: center;
 	cursor: pointer;
-}
+	margin: auto;
 
-.title {
-	margin-right: auto;
-	margin-left: 2em;
-}
-
-.user {
-	margin-right: 5em;
 }
 
 .classUserHome {
 	fill: #ffb969;
+}
+
+.color_blue {
+	color: #64b6ac;
+}
+
+.color_orange {
+	color: #ffb969;
 }
 </style>
