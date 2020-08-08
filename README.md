@@ -5,9 +5,9 @@
 npm install
 ```
 
-### Go to database directory and start Project: cd kite-database
+## Project start
 ```
-npm start
+npm run serve
 ```
 
 ### Compiles and minifies for production
