@@ -1,8 +1,7 @@
 <template>
 	<div>
 		<div class="weatherValues">
-			<div id="header" @click="updateWeatherData">{{ this.city }} 
-			</div>
+			<div id="header" @click="updateWeatherData">{{ this.city }}</div>
 			<div>
 				<img id="currentTempIcon" src="@/assets/wi-thermometer.svg" />
 				{{ currentTemp }}
@@ -49,7 +48,7 @@ export default {
 	// 		headers: {
 	// 			'content-type': 'application/octet-stream',
 	// 			'x-rapidapi-host': 'google-maps-geocoding.p.rapidapi.com',
-	// 			'x-rapidapi-key': '65b93e7d9emsh837d4114ae81b9ap1f7365jsn94ce81f8c2ed',
+	// 			'x-rapidapi-key': process.env.GEOCODE_KEY,
 	// 			useQueryString: true,
 	// 		},
 	// 		params: {
@@ -90,8 +89,7 @@ export default {
 				headers: {
 					'content-type': 'application/octet-stream',
 					'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
-					'x-rapidapi-key':
-						'65b93e7d9emsh837d4114ae81b9ap1f7365jsn94ce81f8c2ed',
+					'x-rapidapi-key': process.env.WEATHER_KEY,
 					useQueryString: true,
 				},
 				params: {
