@@ -48,8 +48,8 @@ export default {
 	// 		url: 'https://google-maps-geocoding.p.rapidapi.com/geocode/json',
 	// 		headers: {
 	// 			'content-type': 'application/octet-stream',
-	// 			'x-rapidapi-host': 'google-maps-geocoding.p.rapidapi.com',
-	// 			'x-rapidapi-key': '65b93e7d9emsh837d4114ae81b9ap1f7365jsn94ce81f8c2ed',
+	// 			'x-rapidapi-host': '',
+	// 			'x-rapidapi-key': '',
 	// 			useQueryString: true,
 	// 		},
 	// 		params: {
