@@ -89,9 +89,9 @@ export default {
 				url: 'https://community-open-weather-map.p.rapidapi.com/weather',
 				headers: {
 					'content-type': 'application/octet-stream',
-					'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
+					'x-rapidapi-host': '',
 					'x-rapidapi-key':
-						'65b93e7d9emsh837d4114ae81b9ap1f7365jsn94ce81f8c2ed',
+						'',
 					useQueryString: true,
 				},
 				params: {
