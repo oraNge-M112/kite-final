@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<navmenu></navmenu>
+		<navmenu class="nav-create"></navmenu>
 		<div class="background-image">
 			<img src="../assets/signup-background.jpg" id="logbg" />
 		</div>
@@ -115,7 +115,7 @@ export default {
 }
 </script>
 
-<style>
+<style> 
 .background-image {
 	position: absolute;
 	z-index: -2;
@@ -160,7 +160,7 @@ export default {
 }
 
 .form h1 {
-	color: #ffb969;
+	color: var(--purp-color);
 	padding: 0;
 }
 
@@ -168,7 +168,7 @@ export default {
 p {
 	text-align: center;
 	margin-bottom: 2em;
-	color: #ddd;
+	color: var(--purp-color);
 }
 
 .form input,
@@ -185,7 +185,7 @@ label {
 	margin: 0.5em 0;
 	width: 100%;
 	background: rgba(255, 255, 255, 0.3);
-	color: #64b6ac;
+	color: var(--blue-color);
 	border-radius: 20px;
 	padding: 0 3em;
 }
@@ -194,18 +194,18 @@ label {
 	display: block;
 	transform-origin: left bottom;
 	transform: translate(2.8em, -1.9em);
-	color: #ddd;
+	color: var(--purp-color);
 	cursor: text;
 }
 
 .form input:focus {
 	border: none;
 	outline-width: 0;
-	border-bottom: 1px solid #64b6ac;
+	border-bottom: 1px solid var(--purp-color);
 }
 
 .form input:focus + label {
-	color: #64b6ac;
+	color: var(--purp-color);
 	transform: translate(0, -3.7em);
 }
 
@@ -223,7 +223,7 @@ label {
 	border: none;
 	font-weight: bold;
 	color: #303030;
-	background: #64b6ac;
+	background: var(--purp-color);
 	outline: none;
 	border-radius: 15px;
 	padding: 0.5em 1em;
@@ -232,7 +232,7 @@ label {
 }
 
 .submitButton:hover {
-	background: #64b6ac;
+	background: var(--purp-color);
 	opacity: 0.8;
 	cursor: pointer;
 }
@@ -272,6 +272,7 @@ label {
 }
 
 #createAcc:hover {
-	border-bottom: 1px solid #64b6ac;
+	border-bottom: 1px solid var(--purp-color);
 }
+
 </style>
