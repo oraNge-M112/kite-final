@@ -1,6 +1,6 @@
 <template>
-	<div class="form">
-		<form class="login-form" method="POST">
+	<div class="user-form">
+		<form class="user-login-user-form" method="POST">
 			<h1>Log In</h1>
 			<input
 				type="text"
@@ -110,7 +110,7 @@ export default {
 </script>
 
 <style>
-.form {
+.user-form {
 	font-family: 'Roboto', sans-serif;
 	/* border: 1px solid #ccc; */
 	width: 13em;
@@ -125,7 +125,7 @@ export default {
 	border-radius: 20px;
 }
 
-.login-form {
+.user-login-user-form {
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -133,29 +133,29 @@ export default {
 	flex-direction: column;
 }
 
-.login-form label {
+.user-login-user-form label {
 	margin-right: 5.5em;
 }
 
-.form h1 {
-	color: #ffb969;
+.user-form h1 {
+	color: var(--orange-color);
 	padding: 0;
 }
 
-.form h1,
+.user-form h1,
 p {
 	text-align: center;
 	margin-bottom: 2em;
 	color: #ddd;
 }
 
-.form input,
+.user-form input,
 label {
 	transition: all 200ms;
 	touch-action: manipulation;
 }
 
-.form input {
+.user-form input {
 	box-sizing: border-box;
 	border: none;
 	border-bottom: 1px solid #ddd;
@@ -163,12 +163,12 @@ label {
 	margin: 0.5em 0;
 	width: 100%;
 	background: rgba(255, 255, 255, 0.3);
-	color: #64B6AC;
+	color: var(--blue-color);
 	border-radius: 20px;
 	padding: 0 3em;
 }
 
-.form label {
+.user-form label {
 	display: block;
 	transform-origin: left bottom;
 	transform: translate(2.8em, -1.9em);
@@ -176,18 +176,18 @@ label {
 	cursor: text;
 }
 
-.form input:focus {
+.user-form input:focus {
 	border: none;
 	outline-width: 0;
-	border-bottom: 1px solid #64B6AC;
+	border-bottom: 1px solid var(--blue-color);
 }
 
-.form input:focus + label {
-	color: #64B6AC;
+.user-form input:focus + label {
+	color: var(--blue-color);
 	transform: translate(0, -3.7em);
 }
 
-.form input[filled='true'] + label {
+.user-form input[filled='true'] + label {
 	transform: translate(0, -3.7em);
 }
 
@@ -200,7 +200,7 @@ label {
 	border: none;
 	font-weight: bold;
 	color: #303030;
-	background: #64B6AC;
+	background: var(--blue-color) !important;
 	outline: none;
 	border-radius: 15px;
 	padding: 0.5em 1em;
@@ -209,12 +209,12 @@ label {
 }
 
 .submitButton:hover {
-	background: #64B6AC;
+	background: var(--blue-color);
 	opacity: 0.8;
 	cursor: pointer;
 }
 
-.form {
+.user-form {
 	transform: scale(1.2);
 }
 
@@ -238,6 +238,6 @@ label {
 }
 
 #createAcc:hover {
-	border-bottom: 1px solid #64B6AC;
+	border-bottom: 1px solid var(--blue-color);
 }
 </style>

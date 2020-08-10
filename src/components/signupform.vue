@@ -39,7 +39,7 @@
 				/>
 				<label for="password">Password:</label>
 				<img src="../assets/password.svg" id="passIcon" />
-				<button class="submitButton" @click="registerAcc">
+				<button class="submitButton-signup" @click="registerAcc">
 					<span>Create Account</span>
 				</button>
 				<span v-if="userExists" class="userExists">
@@ -219,7 +219,7 @@ label {
 	width: 185%;
 }
 
-.submitButton {
+.submitButton-signup {
 	border: none;
 	font-weight: bold;
 	color: #303030;
